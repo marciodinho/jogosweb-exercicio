@@ -1,0 +1,179 @@
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content=" text/html; charset=utf-8">
+        <script type="text/javascript" scr="snap.svg-min.js"></script>
+        <script type="text/javascript">
+        var startX = 100;
+        var startY = 100;
+        function init() 
+        {
+            Snap("#button").click(resetFcn);
+            Snap("#buttonText").click(resetFcn);
+            Snap("#circle").drag(dragMove, dragStart, dragEnd);
+        }
+
+        function resetFcn(evt) 
+        {
+            Snap("#circle").attr({cx: 100, cy: 100});
+        }
+        function dragStart(x, y, evt)
+        {
+            startX = parseInt(Snap("#circle").attr("cx"), 10);
+            startY = parseInt(Snap("#circle").attr("cy"), 10);
+        }
+        function dragMove(dx, dy, x, y, evt)
+        {
+            Snap("#circle").attr({cx: (startX + dx), cy: (startY + dy)});
+        }
+        function dragEnd (evt) 
+        {
+
+        }
+
+        </script>
+        <title>Game Over</title>
+        <link rel="stylesheet" href="assets/style.css">
+    </head>
+    <style>
+        .rotate-scale-up {
+            -webkit-animation: rotate-scale-up 2s linear infinite both;
+                    animation: rotate-scale-up 2s linear infinite both;
+        }
+       @-webkit-keyframes rotate-scale-up {
+         0% {
+           -webkit-transform: scale(1) rotateZ(0);
+                   transform: scale(1) rotateZ(0);
+         }
+         50% {
+           -webkit-transform: scale(2) rotateZ(180deg);
+                   transform: scale(2) rotateZ(180deg);
+         }
+         100% {
+           -webkit-transform: scale(1) rotateZ(360deg);
+                   transform: scale(1) rotateZ(360deg);
+         }
+       }
+       @keyframes rotate-scale-up {
+         0% {
+           -webkit-transform: scale(1) rotateZ(0);
+                   transform: scale(1) rotateZ(0);
+         }
+         50% {
+           -webkit-transform: scale(2) rotateZ(180deg);
+                   transform: scale(2) rotateZ(180deg);
+         }
+         100% {
+           -webkit-transform: scale(1) rotateZ(360deg);
+                   transform: scale(1) rotateZ(360deg);
+         }
+       }
+       .flip-scale-2-hor-top {
+            -webkit-animation: flip-scale-2-hor-top 2s linear infinite both;
+                    animation: flip-scale-2-hor-top 2s linear infinite both;
+        }
+        @-webkit-keyframes flip-scale-2-hor-top {
+            0% {
+                -webkit-transform: translateY(0) rotateX(0) scale(1);
+                        transform: translateY(0) rotateX(0) scale(1);
+                -webkit-transform-origin: 50% 0%;
+                        transform-origin: 50% 0%;
+            }
+            50% {
+                -webkit-transform: translateY(-50%) rotateX(-90deg) scale(2);
+                        transform: translateY(-50%) rotateX(-90deg) scale(2);
+                -webkit-transform-origin: 50% 50%;
+                        transform-origin: 50% 50%;
+            }
+            100% {
+                -webkit-transform: translateY(-100%) rotateX(-180deg) scale(1);
+                        transform: translateY(-100%) rotateX(-180deg) scale(1);
+                -webkit-transform-origin: 50% 100%;
+                        transform-origin: 50% 100%;
+            }
+        }
+        @keyframes flip-scale-2-hor-top {
+            0% {
+                -webkit-transform: translateY(0) rotateX(0) scale(1);
+                        transform: translateY(0) rotateX(0) scale(1);
+                -webkit-transform-origin: 50% 0%;
+                        transform-origin: 50% 0%;
+            }
+            50% {
+                -webkit-transform: translateY(-50%) rotateX(-90deg) scale(2);
+                        transform: translateY(-50%) rotateX(-90deg) scale(2);
+                -webkit-transform-origin: 50% 50%;
+                        transform-origin: 50% 50%;
+            }
+            100% {
+                -webkit-transform: translateY(-100%) rotateX(-180deg) scale(1);
+                        transform: translateY(-100%) rotateX(-180deg) scale(1);
+                -webkit-transform-origin: 50% 100%;
+                        transform-origin: 50% 100%;
+            }
+        }
+       
+    </style>
+    <body onload="init()">
+        <div style="text-align: center;">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRAtio="xMidYMid" width="300" height="40" viewBox="0 0 300 34">
+                <defs>
+                    <style>
+                        .cls-1, .cls-2{
+                            font-size: 33px;
+                        }
+                        .cls-2{
+                            text-anchor: middle;
+                            font-family: "Press Start 2P";
+                            fill: transparent;
+                            animation: preenchimento 3s ease-in-out forwards 1;
+                        }
+                        @keyframes preenchimento {
+                            to{
+                                fill: #BE253F;
+                            }
+                        }
+                    </style>
+                </defs>
+                <text x="151" y="35" class="cls-1"><tspan x="151" class="cls-2">GAME OVER</tspan></text>
+            </svg><br><br>
+            <svg width="400" height="300" viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <style>
+                    .circle{
+                        animation: loopCirculo 1s ease-in-out infinite alternate;
+                    }
+                    @keyframes loopCirculo {
+                        to{
+                            transform: translate(3px, 40px);
+                        }    
+                    }
+                </style>
+                <circle id="circle" class="circle" cx="100" cy="100" r="30"
+                style="fill:hotpink; stroke: black"/>
+                <rect id="button" x="74" y="170"
+                    rx="5" ry="5" width="50" height="25"
+                    style="stroke:black; fill:#ddd;"/>
+                <text id="buttonText" x="100" y="187" class="buttonText"
+                style="fill:black; stroke:none; font-family:sans-serif; font-size: 12pt;
+                text-anchor: middle;">Reset</text>     
+
+            </svg>
+
+
+
+            <svg width="400" height="500" viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <circle class="flip-scale-2-hor-top" cx="100" cy="100" r="30"
+            style="fill:rgb(255, 0, 128); stroke: black"/>
+        </svg>
+        <svg height="400" width="500" viewBox="0 0 200 200">
+            <polygon class="rotate-scale-up" points="100,10 40,198 190,78 10,78 160,198"
+            style="fill:lime;stroke:purple;stroke-width:5;fill-rule:nonzero;" />
+          </svg>
+
+        </div>
+    </body>
+</html>
